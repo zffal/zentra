@@ -1,0 +1,137 @@
+#!/usr/bin/env bash
+# zentra — helper commands for the Zentra monitoring server
+set -euo pipefail
+
+ZENTRA_HOME="/opt/zentra"
+SERVICE="zentra"
+
+usage() {
+    cat <<'EOF'
+zentra — Zentra server commands
+
+  zentra status          Service, port, health, Docker, network
+  zentra logs            Recent service logs  (zentra logs -f to follow)
+  zentra restart         Restart Zentra        (sudo)
+  zentra update          Update the backend   (sudo)
+                        zentra update /path/to/zentra-server.tar.gz
+  zentra uninstall       Remove Zentra         (sudo, asks for confirmation)
+  zentra help            Show this help
+EOF
+}
+
+env_port() {
+    local port="8765"
+    if [ -r "$ZENTRA_HOME/.env" ]; then
+        port="$(sed -n 's/^ZENTRA_PORT=//p' "$ZENTRA_HOME/.env" 2>/dev/null | tail -n 1)"
+    fi
+    printf '%s' "${port:-8765}"
+}
+
+health_json() {
+    python3 - "$(env_port)" <<'PY'
+import json, sys, urllib.request
+try:
+    with urllib.request.urlopen(
+        "http://127.0.0.1:%s/api/health" % sys.argv[1], timeout=3
+    ) as response:
+        print(json.dumps(json.load(response)))
+except Exception as exc:
+    print("unreachable (%s)" % exc, file=sys.stderr)
+    sys.exit(1)
+PY
+}
+
+require_root() {
+    if [ "$(id -u)" -ne 0 ]; then
+        echo "This command needs root. Try: sudo zentra $1" >&2
+        exit 1
+    fi
+}
+
+print_status() {
+    local port active enabled health version uptime lan ts docker_line
+    port="$(env_port)"
+
+    active="$(systemctl is-active "$SERVICE" 2>/dev/null || true)"
+    enabled="$(systemctl is-enabled "$SERVICE" 2>/dev/null || true)"
+    printf '%-10s %s (%s)\n' "Service:" "${active:-unknown}" "${enabled:-unknown}"
+
+    if command -v ss >/dev/null 2>&1 && ss -ltn | grep -q ":$port"; then
+        printf '%-10s %s (listening)\n' "Port:" "$port"
+    else
+        printf '%-10s %s (NOT listening)\n' "Port:" "$port"
+    fi
+
+    if health="$(health_json 2>/dev/null)"; then
+        version="$(printf '%s' "$health" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(d.get("version","?"))')"
+        uptime="$(printf '%s' "$health" | python3 -c 'import json,sys; d=json.load(sys.stdin); s=int(d.get("uptime",0)); print("%dd %dh %dm" % (s//86400, (s%86400)//3600, (s%3600)//60))')"
+        printf '%-10s ok (version %s, up %s)\n' "Health:" "$version" "$uptime"
+    else
+        printf '%-10s unreachable\n' "Health:"
+    fi
+
+    if [ -S /var/run/docker.sock ]; then
+        if docker_line="$(docker ps -q 2>/dev/null)"; then
+            local count
+            count="$(printf '%s' "$docker_line" | grep -c . || true)"
+            printf '%-10s available (%s containers running)\n' "Docker:" "$count"
+        else
+            printf '%-10s socket present (no access for %s)\n' "Docker:" "$(whoami)"
+        fi
+    else
+        printf '%-10s not installed\n' "Docker:"
+    fi
+
+    lan="$(ip -4 route get 1.1.1.1 2>/dev/null | sed -n 's/.* src \([0-9.]*\).*/\1/p' | head -n 1)"
+    [ -n "$lan" ] || lan="$(hostname -I 2>/dev/null | awk '{print $1}')"
+    printf '%-10s http://%s:%s\n' "LAN:" "${lan:-?}" "$port"
+    if command -v tailscale >/dev/null 2>&1; then
+        ts="$(tailscale ip -4 2>/dev/null | head -n 1 || true)"
+        if [ -n "$ts" ]; then
+            printf '%-10s http://%s:%s\n' "Tailscale:" "$ts" "$port"
+        fi
+    fi
+}
+
+cmd="${1:-status}"
+case "$cmd" in
+    status)
+        print_status
+        ;;
+    logs)
+        shift
+        if [ "$#" -eq 0 ]; then
+            exec journalctl -u "$SERVICE" -n 100 --no-pager
+        else
+            exec journalctl -u "$SERVICE" "$@"
+        fi
+        ;;
+    restart)
+        require_root restart
+        systemctl restart "$SERVICE"
+        echo "Zentra restarting..."
+        for _ in $(seq 1 40); do
+            health_json >/dev/null 2>&1 && break
+            sleep 1
+        done
+        print_status
+        ;;
+    update)
+        require_root update
+        shift
+        exec "$ZENTRA_HOME/scripts/update.sh" "$@"
+        ;;
+    uninstall|remove)
+        require_root uninstall
+        shift
+        exec "$ZENTRA_HOME/scripts/uninstall.sh" "$@"
+        ;;
+    help|-h|--help)
+        usage
+        ;;
+    *)
+        echo "Unknown command: $cmd" >&2
+        usage >&2
+        exit 1
+        ;;
+esac
