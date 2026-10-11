@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Base full pill with 0.5dp separator hairline stroke -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="999dp" />
+            <stroke
+                android:width="0.5dp"
+                android:color="@color/surface_capsule_border" />
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+    <!-- Top-edge highlight: subtle 1dp inset line across the top edge -->
+    <item
+        android:left="24dp"
+        android:right="24dp"
+        android:top="0.5dp"
+        android:bottom="62dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="1dp" />
+            <solid android:color="#26FFFFFF" />
+        </shape>
+    </item>
+</layer-list>

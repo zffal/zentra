@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="2dp"
+    android:layout_marginVertical="2dp"
+    style="@style/CardViewStyle"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header: Title, Style Badge, Range Badge, Settings Icon -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvGraphTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/label_primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/inter"
+                    android:text="Disk read" />
+
+                <TextView
+                    android:id="@+id/tvGraphStyleBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_glass_card_subtle"
+                    android:textColor="@color/accent"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/inter"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp"
+                    android:text="Line" />
+
+                <TextView
+                    android:id="@+id/tvGraphRangeBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:textColor="@color/label_tertiary"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/jetbrains_mono"
+                    android:text="1m" />
+            </LinearLayout>
+
+            <!-- Tappable Settings Button -->
+            <ImageButton
+                android:id="@+id/btnGraphSettings"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/bg_glass_button_circular"
+                android:src="@drawable/ic_settings"
+                android:contentDescription="Customize graph"
+                app:tint="@color/label_secondary" />
+        </LinearLayout>
+
+        <!-- Metric Graph Canvas View -->
+        <com.example.serverdashboard.ui.views.MetricGraphView
+            android:id="@+id/metricGraphView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Optional Secondary Details / Description in Monospace -->
+        <TextView
+            android:id="@+id/tvGraphSecondaryDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/label_tertiary"
+            android:textSize="11sp"
+            android:gravity="center"
+            android:fontFamily="@font/jetbrains_mono"
+            android:visibility="visible"
+            tools:text="Rate: 1.2 MB/s • Peak: 3.4 MB/s" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

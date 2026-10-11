@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefreshContainers"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/content_bottom_padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/screen_margin_horizontal"
+            android:paddingTop="0dp">
+
+            <!-- 1. Screen Title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Services"
+                android:textColor="@color/label_primary"
+                android:textSize="@dimen/text_screen_title"
+                android:textStyle="bold"
+                android:letterSpacing="-0.01"
+                android:fontFamily="@font/inter" />
+
+            <!-- 2. Live Running / Stopped Count Subtitle -->
+            <TextView
+                android:id="@+id/tvContainersSummaryHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/label_secondary"
+                android:textSize="@dimen/text_body_secondary"
+                android:fontFamily="@font/inter"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="@dimen/card_gap"
+                android:text="-- up · -- down" />
+
+            <!-- 3. Full-width Segmented Filter Control -->
+            <com.example.serverdashboard.ui.views.SegmentedControl
+                android:id="@+id/toggleContainerFilter"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/segmented_height"
+                android:layout_marginBottom="@dimen/card_gap">
+
+                <TextView
+                    android:id="@+id/btnFilterAll"
+                    style="@style/SegmentedLabel"
+                    android:text="All" />
+
+                <TextView
+                    android:id="@+id/btnFilterRunning"
+                    style="@style/SegmentedLabel"
+                    android:text="Running" />
+
+                <TextView
+                    android:id="@+id/btnFilterStopped"
+                    style="@style/SegmentedLabel"
+                    android:text="Stopped" />
+            </com.example.serverdashboard.ui.views.SegmentedControl>
+
+            <!-- 4. Apple-grade Search Bar -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/search_field_height"
+                android:layout_marginBottom="@dimen/card_gap"
+                android:background="@drawable/bg_input_field"
+                android:paddingHorizontal="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_search"
+                        app:tint="@color/label_tertiary" />
+
+                    <EditText
+                        android:id="@+id/etContainerSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:hint="@string/search_hint"
+                        android:textColorHint="@color/label_tertiary"
+                        android:textColor="@color/label_primary"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/inter"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:singleLine="true" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- Container Cards List -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerContainers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_container" />
+
+            <!-- Empty State View -->
+            <LinearLayout
+                android:id="@+id/layoutEmptyContainers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:visibility="gone"
+                android:padding="32dp">
+
+                <TextView
+                    android:id="@+id/tvNoContainers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="No services found matching your criteria."
+                    android:textColor="@color/text_muted"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/inter" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

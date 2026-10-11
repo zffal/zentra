@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingVertical="5dp"
+    android:paddingHorizontal="4dp">
+
+    <TextView
+        android:id="@+id/tvRuleTarget"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/label_primary"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/jetbrains_mono"
+        android:text="22/tcp (SSH)" />
+
+    <TextView
+        android:id="@+id/tvRuleFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/label_tertiary"
+        android:textSize="11sp"
+        android:layout_marginEnd="8dp"
+        android:text="Anywhere" />
+
+    <TextView
+        android:id="@+id/tvRuleAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/badge_running"
+        android:textColor="@color/success"
+        android:textSize="9.5sp"
+        android:textStyle="bold"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="1.5dp"
+        android:text="Allow" />
+</LinearLayout>

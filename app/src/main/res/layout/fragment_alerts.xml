@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefreshAlerts"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/content_bottom_padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/screen_margin_horizontal"
+            android:paddingTop="0dp">
+
+            <!-- Top Header & Clean Quiet Actions -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="@dimen/card_gap">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/label_primary"
+                    android:textSize="@dimen/text_screen_title"
+                    android:textStyle="bold"
+                    android:letterSpacing="-0.01"
+                    android:fontFamily="@font/inter"
+                    android:text="Alerts" />
+
+                <!-- Quiet Text Button with 48dp Touch Target -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnClearAllAlerts"
+                    style="@style/GhostButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:text="Clear all"
+                    android:textColor="@color/critical"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/inter"
+                    android:letterSpacing="0"
+                    android:textAllCaps="false"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:paddingHorizontal="12dp" />
+            </LinearLayout>
+
+            <!-- Dismissible Notification Permission Banner -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardNotificationPermissionBanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/card_gap"
+                android:visibility="gone"
+                style="@style/CardViewStyle">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="@dimen/card_padding"
+                    android:paddingVertical="10dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Notifications are disabled"
+                            android:textColor="@color/label_primary"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/inter" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Enable to receive critical hardware and server alerts"
+                            android:textColor="@color/label_secondary"
+                            android:textSize="11sp"
+                            android:fontFamily="@font/inter" />
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnEnableNotificationsBanner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:minWidth="48dp"
+                        android:text="Enable"
+                        android:textSize="12sp"
+                        android:textColor="@color/accent"
+                        app:strokeColor="@color/separator"
+                        app:strokeWidth="1dp"
+                        app:cornerRadius="18dp"
+                        android:backgroundTint="@color/surface_2"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+                    <ImageButton
+                        android:id="@+id/btnDismissNotificationBanner"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_close"
+                        android:contentDescription="Dismiss"
+                        android:layout_marginStart="4dp"
+                        app:tint="@color/label_tertiary" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Segmented Filter Control (All, Critical, Warning, Resolved) -->
+            <com.example.serverdashboard.ui.views.SegmentedControl
+                android:id="@+id/toggleAlertFilter"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/segmented_height"
+                android:layout_marginBottom="@dimen/card_gap">
+
+                <TextView
+                    android:id="@+id/btnAlertFilterAll"
+                    style="@style/SegmentedLabel"
+                    android:text="All" />
+
+                <TextView
+                    android:id="@+id/btnAlertFilterCritical"
+                    style="@style/SegmentedLabel"
+                    android:text="Critical" />
+
+                <TextView
+                    android:id="@+id/btnAlertFilterWarning"
+                    style="@style/SegmentedLabel"
+                    android:text="Warning" />
+
+                <TextView
+                    android:id="@+id/btnAlertFilterResolved"
+                    style="@style/SegmentedLabel"
+                    android:text="Resolved" />
+            </com.example.serverdashboard.ui.views.SegmentedControl>
+
+            <!-- Main Alert Viewport -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerAlerts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_alert" />
+
+            <!-- Calm Apple-grade Empty State -->
+            <LinearLayout
+                android:id="@+id/layoutEmptyAlerts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:visibility="gone"
+                android:padding="32dp">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_check"
+                    android:background="@drawable/badge_running"
+                    android:padding="12dp"
+                    app:tint="@color/success" />
+
+                <TextView
+                    android:id="@+id/tvEmptyAlerts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/label_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/inter"
+                    android:text="All systems healthy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/label_secondary"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/inter"
+                    android:text="No active alerts detected on this server." />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

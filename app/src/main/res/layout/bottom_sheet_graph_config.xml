@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_sheet_rounded_top">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="36dp">
+
+        <!-- Apple-grade Grabber Handle -->
+        <View
+            android:layout_width="36dp"
+            android:layout_height="4.5dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bg_nav_pill_selected"
+            android:backgroundTint="@color/separator"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Customize Graph"
+            style="@style/ScreenTitle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="20dp"
+            android:text="Select metric and matching visualization style"
+            style="@style/Caption" />
+
+        <!-- 1. Metric Selection -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Telemetry metric"
+            style="@style/SectionHeader"
+            android:layout_marginBottom="10dp" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupMetrics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:singleSelection="true"
+            app:selectionRequired="true"
+            app:chipSpacingHorizontal="8dp"
+            app:chipSpacingVertical="8dp"
+            android:layout_marginBottom="20dp">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMetricCpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CPU"
+                style="@style/PillChip" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMetricMemory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Memory"
+                style="@style/PillChip" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMetricStorage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Storage"
+                style="@style/PillChip" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMetricDiskRead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Disk Read"
+                style="@style/PillChip" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMetricDiskWrite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Disk Write"
+                style="@style/PillChip" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMetricNetDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Net Download"
+                style="@style/PillChip" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMetricNetUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Net Upload"
+                style="@style/PillChip" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- 2. Visualization Style Selection -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Visualization style"
+            style="@style/SectionHeader"
+            android:layout_marginBottom="10dp" />
+
+        <com.example.serverdashboard.ui.views.SegmentedControl
+            android:id="@+id/toggleGraphStyles"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/btnStyleLine"
+                style="@style/SegmentedLabel"
+                android:text="Line" />
+
+            <TextView
+                android:id="@+id/btnStyleSemiCircle"
+                style="@style/SegmentedLabel"
+                android:text="Gauge" />
+
+            <TextView
+                android:id="@+id/btnStyleRing"
+                style="@style/SegmentedLabel"
+                android:text="Ring" />
+
+            <TextView
+                android:id="@+id/btnStyleBar"
+                style="@style/SegmentedLabel"
+                android:text="Bar" />
+        </com.example.serverdashboard.ui.views.SegmentedControl>
+
+        <!-- 3. Time Range Selection -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time range"
+            style="@style/SectionHeader"
+            android:layout_marginBottom="10dp" />
+
+        <com.example.serverdashboard.ui.views.SegmentedControl
+            android:id="@+id/toggleGraphTimeRanges"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="22dp">
+
+            <TextView
+                android:id="@+id/btnRange1m"
+                style="@style/SegmentedLabel"
+                android:text="1m" />
+
+            <TextView
+                android:id="@+id/btnRange5m"
+                style="@style/SegmentedLabel"
+                android:text="5m" />
+
+            <TextView
+                android:id="@+id/btnRange15m"
+                style="@style/SegmentedLabel"
+                android:text="15m" />
+
+            <TextView
+                android:id="@+id/btnRange1h"
+                style="@style/SegmentedLabel"
+                android:text="1h" />
+
+            <TextView
+                android:id="@+id/btnRange24h"
+                style="@style/SegmentedLabel"
+                android:text="24h" />
+        </com.example.serverdashboard.ui.views.SegmentedControl>
+
+        <!-- 4. Display Preferences (Grouped Inset Card) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Display preferences"
+            style="@style/SectionHeader"
+            android:layout_marginBottom="10dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/CardViewSubtle"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp">
+
+                <!-- Row 1: Secondary Details -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Show Secondary Details"
+                        style="@style/Body" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchSecondaryDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:thumbTint="@color/accent"
+                        app:trackTint="@color/surface_3" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator" />
+
+                <!-- Row 2: Compact Height -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Compact Card Height"
+                        style="@style/Body" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchCompactHeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:thumbTint="@color/accent"
+                        app:trackTint="@color/surface_3" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 5. Actions -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnApplyConfig"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Save preferences"
+            style="@style/ActionButton"
+            android:layout_marginBottom="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnResetDefaults"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="Reset to defaults"
+            style="@style/GhostButton" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

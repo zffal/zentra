@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Layout Spacing & Margin System (14dp screen margin, 10dp card gap, 14dp card padding) -->
+    <dimen name="screen_margin_horizontal">14dp</dimen>
+    <dimen name="card_gap">10dp</dimen>
+    <dimen name="card_padding">14dp</dimen>
+    <dimen name="card_padding_compact">12dp</dimen>
+    <dimen name="card_padding_vertical">12dp</dimen>
+
+    <!-- Generic Spacings -->
+    <dimen name="spacing_2">2dp</dimen>
+    <dimen name="spacing_4">4dp</dimen>
+    <dimen name="spacing_6">6dp</dimen>
+    <dimen name="spacing_8">8dp</dimen>
+    <dimen name="spacing_10">10dp</dimen>
+    <dimen name="spacing_12">12dp</dimen>
+    <dimen name="spacing_14">14dp</dimen>
+    <dimen name="spacing_16">16dp</dimen>
+    <dimen name="spacing_20">20dp</dimen>
+    <dimen name="spacing_24">24dp</dimen>
+    <dimen name="spacing_28">28dp</dimen>
+    <dimen name="spacing_32">32dp</dimen>
+
+    <!-- Corner Radii System (Hero: 22dp, Card: 18dp, Item: 14dp, Button: 12dp, Pill: 999dp) -->
+    <dimen name="radius_hero">22dp</dimen>
+    <dimen name="radius_card">18dp</dimen>
+    <dimen name="radius_item">14dp</dimen>
+    <dimen name="radius_button">12dp</dimen>
+    <dimen name="radius_pill">999dp</dimen>
+    <dimen name="radius_status_island_expanded">24dp</dimen>
+
+    <!-- Typography Scale (Hero: 36sp, Screen title: 26sp, Section header: 15sp, Body: 14sp, Caption: 11sp) -->
+    <dimen name="text_hero">36sp</dimen>
+    <dimen name="text_hero_unit">16sp</dimen>
+    <dimen name="text_screen_title">26sp</dimen>
+    <dimen name="text_section_header">15sp</dimen>
+    <dimen name="text_body">14sp</dimen>
+    <dimen name="text_body_secondary">13sp</dimen>
+    <dimen name="text_caption">11sp</dimen>
+    <dimen name="text_caption_unit">10sp</dimen>
+
+    <!-- Component Heights & Sizes -->
+    <dimen name="chart_height_sparkline">36dp</dimen>
+    <dimen name="gauge_ring_diameter">80dp</dimen>
+    <dimen name="gauge_ring_stroke">6dp</dimen>
+    <dimen name="gauge_semicircle_height">68dp</dimen>
+    <dimen name="progress_bar_height">6dp</dimen>
+    <dimen name="status_pill_height">24dp</dimen>
+    <dimen name="status_dot_size">8dp</dimen>
+    <dimen name="list_row_height">48dp</dimen>
+    <dimen name="header_button_size">36dp</dimen>
+    <dimen name="segmented_control_height">36dp</dimen>
+    <dimen name="segmented_height">36dp</dimen>
+    <dimen name="segmented_control_thumb_height">30dp</dimen>
+    <dimen name="search_field_height">40dp</dimen>
+    <dimen name="btn_height">52dp</dimen>
+    <dimen name="btn_height_compact">48dp</dimen>
+
+    <!-- Floating Navigation Capsule -->
+    <dimen name="floating_nav_height">56dp</dimen>
+    <dimen name="floating_nav_icon_size">22dp</dimen>
+    <dimen name="floating_nav_label_size">11sp</dimen>
+    <dimen name="floating_nav_margin_horizontal">14dp</dimen>
+    <dimen name="floating_nav_margin_bottom">12dp</dimen>
+    <dimen name="nav_area_top_gap">8dp</dimen>
+    <dimen name="nav_area_bottom_gap">12dp</dimen>
+    <dimen name="content_bottom_padding">16dp</dimen>
+
+    <!-- Status Island Tokens -->
+    <dimen name="status_island_collapsed_height">48dp</dimen>
+    <dimen name="status_island_touch_target_height">48dp</dimen>
+    <dimen name="status_island_min_width">168dp</dimen>
+    <dimen name="status_island_ring_size">28dp</dimen>
+    <dimen name="status_island_action_button_height">52dp</dimen>
+    <dimen name="top_bar_height">60dp</dimen>
+</resources>

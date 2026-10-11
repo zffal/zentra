@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardContainerItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    style="@style/CardViewStyle">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/card_padding"
+        android:paddingVertical="12dp">
+
+        <!-- Top Header: Service Name, State Badge & Expand Arrow -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvContainerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/label_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/inter"
+                    android:text="Jellyfin" />
+
+                <TextView
+                    android:id="@+id/tvContainerState"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/label_secondary"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/jetbrains_mono"
+                    android:layout_marginTop="2dp"
+                    android:singleLine="true"
+                    android:ellipsize="middle"
+                    android:text="jellyfin/jellyfin:latest" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvContainerStatusBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/badge_running"
+                android:textColor="@color/success"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:text="Running" />
+
+            <ImageView
+                android:id="@+id/imgExpandChevron"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_chevron_right"
+                app:tint="@color/label_tertiary"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <!-- Advanced Technical Details Section (Expandable on tap) -->
+        <LinearLayout
+            android:id="@+id/layoutContainerDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginTop="12dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/separator"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Technical details info in JetBrains Mono -->
+            <TextView
+                android:id="@+id/tvContainerImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/label_secondary"
+                android:textSize="12sp"
+                android:fontFamily="@font/jetbrains_mono"
+                android:text="Image: jellyfin/jellyfin:latest" />
+
+            <TextView
+                android:id="@+id/tvContainerId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/label_tertiary"
+                android:textSize="11sp"
+                android:fontFamily="@font/jetbrains_mono"
+                android:layout_marginTop="2dp"
+                android:text="ID: f19b74e25d3f" />
+
+            <!-- Stats Row: CPU and Memory in clean blocks -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/tvContainerCpu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/accent"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/jetbrains_mono"
+                    android:text="CPU: 0.8%" />
+
+                <TextView
+                    android:id="@+id/tvContainerMem"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/label_primary"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/jetbrains_mono"
+                    android:text="RAM: 42.1 MB" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/separator"
+                android:layout_marginVertical="12dp" />
+
+            <!-- Actions Row: Logs button + Restart / Stop / Start -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnViewLogs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Logs"
+                    style="@style/SecondaryButton"
+                    android:textSize="12sp"
+                    android:minHeight="0dp"
+                    android:paddingHorizontal="14dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRestartContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Restart"
+                    style="@style/SecondaryButton"
+                    android:textSize="12sp"
+                    android:minHeight="0dp"
+                    android:textColor="@color/accent"
+                    android:paddingHorizontal="12dp"
+                    android:layout_marginEnd="6dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStopContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Stop"
+                    style="@style/SecondaryButton"
+                    android:textSize="12sp"
+                    android:minHeight="0dp"
+                    android:textColor="@color/critical"
+                    android:paddingHorizontal="12dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStartContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="Start"
+                    style="@style/ActionButton"
+                    android:textSize="12sp"
+                    android:minHeight="0dp"
+                    android:paddingHorizontal="14dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

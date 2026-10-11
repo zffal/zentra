@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="6dp"
+    style="@style/CardViewSubtle">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="11dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvIfName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/label_primary"
+                android:textSize="13.5sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/jetbrains_mono"
+                android:text="tailscale0" />
+
+            <TextView
+                android:id="@+id/tvIfStatusBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/badge_running"
+                android:textColor="@color/success"
+                android:textSize="9.5sp"
+                android:textStyle="bold"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="1.5dp"
+                android:text="Up" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvIfIp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/label_secondary"
+            android:textSize="11.5sp"
+            android:fontFamily="@font/jetbrains_mono"
+            android:layout_marginTop="2dp"
+            android:text="100.x.x.x" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp">
+
+            <TextView
+                android:id="@+id/tvIfRx"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/label_tertiary"
+                android:textSize="11sp"
+                android:text="Rx: 1.4 GB" />
+
+            <TextView
+                android:id="@+id/tvIfTx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/label_tertiary"
+                android:textSize="11sp"
+                android:text="Tx: 850 MB" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

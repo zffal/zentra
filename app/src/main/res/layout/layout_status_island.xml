@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/islandRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <!-- Dimming Scrim for outside tap collapse -->
+    <View
+        android:id="@+id/viewIslandScrim"
+        android:layout_width="match_parent"
+        android:layout_height="2000dp"
+        android:background="#33000000"
+        android:visibility="gone"
+        android:alpha="0"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <!-- 1. Collapsed Pill Container -->
+    <LinearLayout
+        android:id="@+id/layoutCollapsedWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <!-- Visual Pill with >=48dp Touch Target Area -->
+        <FrameLayout
+            android:id="@+id/pillTouchTarget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/status_island_touch_target_height"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Server status island. Tap to expand controls.">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/islandPill"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/status_island_collapsed_height"
+                android:layout_gravity="center"
+                android:minWidth="@dimen/status_island_min_width"
+                android:background="@drawable/bg_status_island_pill"
+                android:outlineProvider="background"
+                android:elevation="6dp"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <!-- Fixed 28dp indicator slot at the far left with 12dp padding -->
+                <FrameLayout
+                    android:id="@+id/layoutIndicatorSlot"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <com.example.serverdashboard.ui.views.HealthRingView
+                        android:id="@+id/healthRing"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center" />
+                </FrameLayout>
+
+                <!-- Text Area filling remaining width with 12dp end margin -->
+                <LinearLayout
+                    android:id="@+id/layoutIslandTextContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="12dp"
+                    app:layout_constraintWidth_default="wrap"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintStart_toEndOf="@id/layoutIndicatorSlot"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <TextView
+                        android:id="@+id/tvIslandHost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/label_primary"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:letterSpacing="-0.01"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:text="Server" />
+
+                    <TextView
+                        android:id="@+id/tvIslandStatusWord"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0.5dp"
+                        android:textColor="@color/status_success"
+                        android:textSize="11sp"
+                        android:fontFamily="@font/inter_medium"
+                        android:singleLine="true"
+                        android:gravity="center"
+                        android:text="Online" />
+                </LinearLayout>
+
+                <!-- 8dp Active Alert Red Dot on Pill Top-Right Edge -->
+                <View
+                    android:id="@+id/viewIslandAlertDot"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/badge_critical"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- 2. Expanded Panel Container (Spring animated) -->
+    <LinearLayout
+        android:id="@+id/layoutExpandedPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/screen_margin_horizontal"
+        android:background="@drawable/bg_status_island_expanded"
+        android:elevation="14dp"
+        android:orientation="vertical"
+        android:padding="@dimen/card_padding"
+        android:visibility="gone"
+        android:alpha="0">
+
+        <!-- Header Row: Server Name & Close Indicator -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvIslandExpandedHost"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/label_primary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter"
+                android:letterSpacing="-0.01"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="Server" />
+
+            <TextView
+                android:id="@+id/tvIslandExpandedStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_nav_pill_selected"
+                android:textColor="@color/success"
+                android:textSize="11sp"
+                android:fontFamily="@font/inter"
+                android:textStyle="bold"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:text="Connected" />
+        </LinearLayout>
+
+        <!-- Hostname / IP in monospace -->
+        <TextView
+            android:id="@+id/tvIslandExpandedIp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/label_secondary"
+            android:textSize="12sp"
+            android:fontFamily="@font/jetbrains_mono"
+            android:text="192.168.1.42:8765" />
+
+        <!-- Uptime & Staleness Caption -->
+        <TextView
+            android:id="@+id/tvIslandExpandedUptime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:textColor="@color/label_tertiary"
+            android:textSize="@dimen/text_caption"
+            android:fontFamily="@font/inter"
+            android:text="Uptime: 14d 6h • Updated just now" />
+
+        <!-- Hairline Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@color/separator" />
+
+        <!-- Row of 4 Equal Action Buttons (52dp tall, tinted fill) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/status_island_action_button_height"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <!-- 1. Wake Button -->
+            <LinearLayout
+                android:id="@+id/btnIslandWake"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/bg_island_action_button"
+                android:layout_marginEnd="6dp"
+                android:contentDescription="Wake on LAN">
+
+                <ImageView
+                    android:id="@+id/imgIslandWake"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_power"
+                    app:tint="@color/label_secondary" />
+
+                <TextView
+                    android:id="@+id/tvIslandWakeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Wake"
+                    android:textColor="@color/label_secondary"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/inter"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- 2. Refresh Button -->
+            <LinearLayout
+                android:id="@+id/btnIslandRefresh"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/bg_island_action_button"
+                android:layout_marginEnd="6dp"
+                android:contentDescription="Refresh telemetry">
+
+                <ImageView
+                    android:id="@+id/imgIslandRefresh"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_refresh"
+                    app:tint="@color/label_primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Refresh"
+                    android:textColor="@color/label_primary"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/inter"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- 3. Alerts Button (with red count badge) -->
+            <FrameLayout
+                android:id="@+id/btnIslandAlerts"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/bg_island_action_button"
+                android:layout_marginEnd="6dp"
+                android:contentDescription="Server alerts">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_nav_alerts"
+                        app:tint="@color/label_primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Alerts"
+                        android:textColor="@color/label_primary"
+                        android:textSize="11sp"
+                        android:fontFamily="@font/inter"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvIslandAlertBadge"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/badge_critical"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:text="0"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <!-- 4. Settings Button -->
+            <LinearLayout
+                android:id="@+id/btnIslandSettings"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/bg_island_action_button"
+                android:contentDescription="Settings">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_settings"
+                    app:tint="@color/label_primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Settings"
+                    android:textColor="@color/label_primary"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/inter"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingVertical="9dp"
+    android:paddingHorizontal="4dp">
+
+    <!-- Top rank badge (#1, #2, #3) -->
+    <TextView
+        android:id="@+id/tvRankBadge"
+        android:layout_width="24dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="#1"
+        android:textColor="@color/accent"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/jetbrains_mono"
+        android:background="@drawable/badge_running"
+        android:visibility="gone" />
+
+    <!-- Date & Breakdown Column -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvUsageDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oct 10, 2026"
+            android:textColor="@color/label_primary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/inter" />
+
+        <TextView
+            android:id="@+id/tvUsageBreakdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="↓ 104.9 MB  •  ↑ 21.0 MB"
+            android:textColor="@color/label_secondary"
+            android:textSize="12sp"
+            android:fontFamily="@font/jetbrains_mono" />
+    </LinearLayout>
+
+    <!-- Total Usage Column -->
+    <TextView
+        android:id="@+id/tvUsageTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="125.8 MB"
+        android:textColor="@color/label_primary"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/jetbrains_mono" />
+
+</LinearLayout>

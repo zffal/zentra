@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/bg_screen">
+
+    <!-- Top Bar with Frosted Glass Look -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/surface_card"
+        android:paddingHorizontal="14dp">
+
+        <ImageButton
+            android:id="@+id/btnLogsBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_glass_button_circular"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@color/text_primary"
+            android:contentDescription="Back" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="12dp">
+
+            <TextView
+                android:id="@+id/tvLogsContainerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                style="@style/Mono"
+                android:text="Container Logs" />
+
+            <TextView
+                android:id="@+id/tvLogsSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Caption"
+                android:textSize="11sp"
+                android:text="Real-time standard output stream" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnLogsRefresh"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/bg_glass_button_circular"
+            android:src="@drawable/ic_refresh"
+            app:tint="@color/text_secondary"
+            android:contentDescription="Reload" />
+
+        <ImageButton
+            android:id="@+id/btnLogsCopy"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/bg_glass_button_circular"
+            android:src="@drawable/ic_copy"
+            app:tint="@color/accent"
+            android:contentDescription="Copy"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/separator" />
+
+    <!-- Terminal Output View -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg">
+
+        <ScrollView
+            android:id="@+id/scrollLogs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <TextView
+                android:id="@+id/tvLogsContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/label_primary"
+                style="@style/Mono"
+                android:textSize="12sp"
+                android:padding="16dp"
+                android:textIsSelectable="true"
+                android:lineSpacingExtra="3dp"
+                android:text="Loading container logs..." />
+        </ScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressLogs"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/accent"
+            android:visibility="gone" />
+    </FrameLayout>
+</LinearLayout>

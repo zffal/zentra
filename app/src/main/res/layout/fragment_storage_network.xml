@@ -1,0 +1,1057 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefreshStorage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollStorageNetwork"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/content_bottom_padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/screen_margin_horizontal"
+            android:paddingTop="0dp">
+
+            <!-- 1. Disk I/O Performance Cards (Side-by-Side Bento with Sparklines) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:baselineAligned="false"
+                android:layout_marginBottom="@dimen/card_gap">
+
+                <!-- Disk Read Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="5dp"
+                    style="@style/CardViewStyle">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/card_padding">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Disk read"
+                            style="@style/SectionHeader" />
+
+                        <TextView
+                            android:id="@+id/tvDiskReadSpeed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="0 B/s"
+                            android:textColor="@color/label_primary"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/jetbrains_mono" />
+
+                        <com.example.serverdashboard.ui.views.SparklineView
+                            android:id="@+id/sparklineDiskRead"
+                            android:layout_width="match_parent"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="8dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Disk Write Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    style="@style/CardViewStyle">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/card_padding">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Disk write"
+                            style="@style/SectionHeader" />
+
+                        <TextView
+                            android:id="@+id/tvDiskWriteSpeed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="0 B/s"
+                            android:textColor="@color/label_primary"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/jetbrains_mono" />
+
+                        <com.example.serverdashboard.ui.views.SparklineView
+                            android:id="@+id/sparklineDiskWrite"
+                            android:layout_width="match_parent"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="8dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- 2. Customizable Metric Graphs Carousel (Inside NestedScrollableHost) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Custom metric graphs"
+                    style="@style/SectionHeader" />
+
+                <TextView
+                    android:id="@+id/tvGraphCarouselIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/label_tertiary"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/jetbrains_mono"
+                    android:text="1 / 5" />
+
+                <ImageButton
+                    android:id="@+id/btnResetGraphs"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_glass_button_circular"
+                    android:src="@drawable/ic_refresh"
+                    app:tint="@color/label_secondary"
+                    android:contentDescription="Reset graphs to default" />
+            </LinearLayout>
+
+            <!-- NestedScrollableHost prevents ViewPager2 swipe conflict with horizontal scrolling -->
+            <com.example.serverdashboard.ui.views.NestedScrollableHost
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginBottom="@dimen/card_gap">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/pagerCustomGraphs"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.example.serverdashboard.ui.views.NestedScrollableHost>
+
+            <!-- 3. Mounted Filesystems Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/card_gap"
+                style="@style/CardViewStyle">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/title_disks"
+                        style="@style/SectionHeader" />
+
+                    <TextView
+                        android:id="@+id/tvEmptyFilesystems"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/label_secondary"
+                        android:textSize="12.5sp"
+                        android:gravity="center"
+                        android:padding="12dp"
+                        android:text="No filesystems detected"
+                        android:visibility="gone" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerFilesystems"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:layout_marginTop="12dp" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutFilesystemsToggle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingVertical="8dp"
+                        android:layout_marginTop="6dp">
+
+                        <TextView
+                            android:id="@+id/tvFilesystemsToggleText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/accent"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/inter"
+                            android:text="Show all partitions ▼" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 4. Network Throughput Cards (Download & Upload) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:baselineAligned="false"
+                android:layout_marginBottom="@dimen/card_gap">
+
+                <!-- Download Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="5dp"
+                    style="@style/CardViewStyle">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/card_padding">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Download"
+                            style="@style/SectionHeader" />
+
+                        <TextView
+                            android:id="@+id/tvNetDownloadSpeed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="0 B/s"
+                            android:textColor="@color/label_primary"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/jetbrains_mono" />
+
+                        <com.example.serverdashboard.ui.views.SparklineView
+                            android:id="@+id/sparklineNetDownload"
+                            android:layout_width="match_parent"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="8dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Upload Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    style="@style/CardViewStyle">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/card_padding">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Upload"
+                            style="@style/SectionHeader" />
+
+                        <TextView
+                            android:id="@+id/tvNetUploadSpeed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="0 B/s"
+                            android:textColor="@color/label_primary"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/jetbrains_mono" />
+
+                        <com.example.serverdashboard.ui.views.SparklineView
+                            android:id="@+id/sparklineNetUpload"
+                            android:layout_width="match_parent"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="8dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- 5. Data Usage Card (Historical & Date-wise Bandwidth) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardDataUsage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/card_gap"
+                style="@style/CardViewStyle">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                    <!-- Header Row: Title & Share CSV Action -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Data usage"
+                            style="@style/SectionHeader" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnShareUsageCsv"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:paddingHorizontal="8dp"
+                            android:minWidth="0dp"
+                            android:text="Share CSV"
+                            android:textColor="@color/accent"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            android:contentDescription="Export visible usage to CSV" />
+                    </LinearLayout>
+
+                    <!-- Segmented Range Control: 7d / 30d / 90d / Month -->
+                    <com.example.serverdashboard.ui.views.SegmentedControl
+                        android:id="@+id/segmentedUsageRange"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/segmented_height"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:id="@+id/btnUsage7d"
+                            style="@style/SegmentedLabel"
+                            android:text="7d" />
+
+                        <TextView
+                            android:id="@+id/btnUsage30d"
+                            style="@style/SegmentedLabel"
+                            android:text="30d" />
+
+                        <TextView
+                            android:id="@+id/btnUsage90d"
+                            style="@style/SegmentedLabel"
+                            android:text="90d" />
+
+                        <TextView
+                            android:id="@+id/btnUsageMonth"
+                            style="@style/SegmentedLabel"
+                            android:text="Month" />
+                    </com.example.serverdashboard.ui.views.SegmentedControl>
+
+                    <!-- Interface Selection Horizontal Chips -->
+                    <HorizontalScrollView
+                        android:id="@+id/scrollUsageInterfaceChips"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none"
+                        android:overScrollMode="never"
+                        android:layout_marginBottom="12dp">
+
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chipGroupUsageInterfaces"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:singleSelection="true"
+                            app:selectionRequired="true" />
+                    </HorizontalScrollView>
+
+                    <!-- Monthly Data Cap Warning Pill (hidden by default) -->
+                    <LinearLayout
+                        android:id="@+id/layoutCapWarningPill"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/badge_warning"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="6dp"
+                        android:layout_marginBottom="12dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/tvCapWarningText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="⚠ 82% of monthly cap used (82.1 GB / 100 GB)"
+                            android:textColor="@color/warning"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/inter" />
+                    </LinearLayout>
+
+                    <!-- Loading Skeleton State -->
+                    <LinearLayout
+                        android:id="@+id/layoutUsageLoading"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:visibility="gone">
+
+                        <ProgressBar
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:indeterminateTint="@color/accent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Loading bandwidth telemetry..."
+                            android:textColor="@color/label_secondary"
+                            android:textSize="12sp"
+                            android:layout_marginTop="8dp" />
+                    </LinearLayout>
+
+                    <!-- Error / Outdated Server State -->
+                    <LinearLayout
+                        android:id="@+id/layoutUsageError"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:paddingVertical="20dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/tvUsageErrorMessage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Update server to see usage"
+                            android:textColor="@color/label_secondary"
+                            android:textSize="13sp"
+                            android:gravity="center" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnUsageRetry"
+                            style="@style/Widget.MaterialComponents.Button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:text="Retry"
+                            android:textSize="12sp"
+                            android:layout_marginTop="10dp" />
+                    </LinearLayout>
+
+                    <!-- Empty State (No usage recorded yet) -->
+                    <TextView
+                        android:id="@+id/tvUsageEmpty"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:gravity="center"
+                        android:text="No data yet (tracking since --)"
+                        android:textColor="@color/label_secondary"
+                        android:textSize="13sp"
+                        android:visibility="gone" />
+
+                    <!-- Main Data Content View -->
+                    <LinearLayout
+                        android:id="@+id/layoutUsageContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- Hero Total & Subline -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="bottom"
+                            android:layout_marginBottom="12dp">
+
+                            <TextView
+                                android:id="@+id/tvUsageHeroTotal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0 B"
+                                android:textColor="@color/label_primary"
+                                android:textSize="26sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/jetbrains_mono" />
+
+                            <TextView
+                                android:id="@+id/tvUsageHeroSubline"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:text="↓ 0 B  •  ↑ 0 B"
+                                android:textColor="@color/label_secondary"
+                                android:textSize="13sp"
+                                android:fontFamily="@font/jetbrains_mono"
+                                android:layout_marginBottom="4dp" />
+                        </LinearLayout>
+
+                        <!-- Custom Canvas Stacked Bar Chart inside NestedScrollableHost -->
+                        <com.example.serverdashboard.ui.views.NestedScrollableHost
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp">
+
+                            <HorizontalScrollView
+                                android:id="@+id/scrollUsageChart"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:scrollbars="none"
+                                android:overScrollMode="never">
+
+                                <com.example.serverdashboard.ui.views.DailyUsageChartView
+                                    android:id="@+id/chartDailyUsage"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="180dp" />
+                            </HorizontalScrollView>
+                        </com.example.serverdashboard.ui.views.NestedScrollableHost>
+
+                        <!-- Summary Rows: Peak Day & Daily Average -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:baselineAligned="false"
+                            android:layout_marginBottom="12dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Peak day"
+                                    android:textColor="@color/label_tertiary"
+                                    android:textSize="11sp"
+                                    android:fontFamily="@font/inter" />
+
+                                <TextView
+                                    android:id="@+id/tvUsagePeakDay"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="--"
+                                    android:textColor="@color/label_primary"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:fontFamily="@font/jetbrains_mono"
+                                    android:layout_marginTop="2dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvUsageAverageLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Daily average"
+                                    android:textColor="@color/label_tertiary"
+                                    android:textSize="11sp"
+                                    android:fontFamily="@font/inter" />
+
+                                <TextView
+                                    android:id="@+id/tvUsageDailyAverage"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0 B / day"
+                                    android:textColor="@color/label_primary"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:fontFamily="@font/jetbrains_mono"
+                                    android:layout_marginTop="2dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.75dp"
+                            android:background="@color/separator"
+                            android:layout_marginBottom="10dp" />
+
+                        <!-- Breakdown List Header & Sort Toggle -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="6dp">
+
+                            <TextView
+                                android:id="@+id/tvUsageListHeader"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="By date"
+                                android:textColor="@color/label_tertiary"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:letterSpacing="0.04"
+                                android:fontFamily="@font/inter" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnUsageSortToggle"
+                                style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:paddingHorizontal="6dp"
+                                android:minWidth="0dp"
+                                android:text="Sort: Date ▼"
+                                android:textColor="@color/accent"
+                                android:textSize="11sp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp" />
+                        </LinearLayout>
+
+                        <!-- By Date RecyclerView -->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvDailyUsage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false"
+                            tools:listitem="@layout/item_daily_usage" />
+
+                        <!-- Expand / Show All Days Toggle Button -->
+                        <LinearLayout
+                            android:id="@+id/layoutUsageListToggle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:paddingVertical="8dp"
+                            android:layout_marginTop="4dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/tvUsageListToggleText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/accent"
+                                android:textSize="13sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/inter"
+                                android:text="Show all days ▼" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 6. Active Network Interfaces Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/card_gap"
+                style="@style/CardViewStyle">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Network interfaces"
+                        style="@style/SectionHeader" />
+
+                    <TextView
+                        android:id="@+id/tvEmptyNetwork"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/label_secondary"
+                        android:textSize="12.5sp"
+                        android:gravity="center"
+                        android:padding="12dp"
+                        android:text="No network interfaces detected"
+                        android:visibility="gone" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerNetworkInterfaces"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:layout_marginTop="12dp" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutInterfacesToggle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingVertical="8dp"
+                        android:layout_marginTop="6dp">
+
+                        <TextView
+                            android:id="@+id/tvInterfacesToggleText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/accent"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/inter"
+                            android:text="Show all interfaces ▼" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 6. Listening Ports Section -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/card_gap"
+                style="@style/CardViewStyle">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tvActivePortsHeader"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/title_ports"
+                            style="@style/SectionHeader" />
+
+                        <ProgressBar
+                            android:id="@+id/progressLoadingPorts"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:indeterminateTint="@color/accent"
+                            android:layout_marginEnd="8dp"
+                            android:visibility="gone" />
+
+                        <ImageButton
+                            android:id="@+id/btnRefreshPorts"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="@drawable/bg_glass_button_circular"
+                            android:src="@drawable/ic_refresh"
+                            app:tint="@color/label_secondary"
+                            android:contentDescription="Refresh network ports" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvEmptyActivePorts"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/label_secondary"
+                        android:textSize="12.5sp"
+                        android:gravity="center"
+                        android:padding="12dp"
+                        android:text="No open listening ports detected"
+                        android:visibility="gone" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerActivePorts"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:layout_marginTop="12dp" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutActivePortsToggle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:id="@+id/tvActivePortsToggleText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/accent"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/inter"
+                            android:text="Show all listening ports ▼" />
+                    </LinearLayout>
+
+                    <!-- Inactive Ports Collapsible Section -->
+                    <LinearLayout
+                        android:id="@+id/layoutInactivePortsToggle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:id="@+id/tvInactivePortsToggleText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/label_tertiary"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/inter"
+                            android:text="Common service ports (Inactive: 0) ▼" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutInactivePortsContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerInactivePorts"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 7. Firewall Status & Rules Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/card_gap"
+                style="@style/CardViewStyle">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/title_firewall"
+                            style="@style/SectionHeader" />
+
+                        <TextView
+                            android:id="@+id/tvFirewallStatusBadge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/badge_running"
+                            android:textColor="@color/success"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="3dp"
+                            android:text="Active" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvFirewallImplementation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/label_primary"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/inter"
+                        android:layout_marginTop="8dp"
+                        android:text="UFW (Uncomplicated Firewall)" />
+
+                    <TextView
+                        android:id="@+id/tvFirewallPolicy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/label_secondary"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/inter"
+                        android:layout_marginTop="2dp"
+                        android:text="Default Policy: Inbound Deny • Outbound Allow" />
+
+                    <!-- Warning Banner Card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardFirewallWarning"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        style="@style/CardViewSubtle"
+                        app:cardBackgroundColor="@color/surface_2"
+                        app:strokeColor="@color/warning"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/tvFirewallWarningDetails"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/warning"
+                            android:textSize="12sp"
+                            android:padding="10dp"
+                            android:text="Firewall warning details" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Rules Summary & Last Checked -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="6dp">
+
+                        <TextView
+                            android:id="@+id/tvFirewallRulesSummary"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/label_secondary"
+                            android:textSize="12sp"
+                            android:text="Rules summary" />
+
+                        <TextView
+                            android:id="@+id/tvFirewallLastChecked"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/label_tertiary"
+                            android:textSize="11sp"
+                            android:text="Just now" />
+                    </LinearLayout>
+
+                    <!-- Expandable Rules -->
+                    <LinearLayout
+                        android:id="@+id/layoutFirewallRulesToggle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingVertical="8dp"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:id="@+id/tvFirewallRulesToggleText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/accent"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/inter"
+                            android:text="View firewall rules (0) ▼" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutFirewallRulesContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/tvEmptyFirewallRules"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/label_secondary"
+                            android:textSize="12.5sp"
+                            android:gravity="center"
+                            android:padding="12dp"
+                            android:text="No rules defined"
+                            android:visibility="gone" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerFirewallRules"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false"
+                            android:layout_marginTop="6dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 8. Restart Network Service Button & Progress -->
+            <LinearLayout
+                android:id="@+id/layoutNetworkRestartProgress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingVertical="8dp"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:indeterminateTint="@color/accent"
+                    android:layout_marginEnd="10dp" />
+
+                <TextView
+                    android:id="@+id/tvNetworkRestartStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Restarting network service..."
+                    android:textColor="@color/label_secondary"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRestartNetworkService"
+                style="@style/SecondaryButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btn_height"
+                android:text="Restart network service"
+                android:textColor="@color/warning"
+                android:strokeColor="@color/separator"
+                android:layout_marginTop="4dp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

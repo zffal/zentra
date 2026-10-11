@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Apple System Tokens (Dark Theme) -->
+    <color name="bg">#000000</color>
+    <color name="surface_1">#1C1C1E</color>
+    <color name="surface_2">#2C2C2E</color>
+    <color name="surface_3">#3A3A3C</color>
+    <color name="separator">#38383A</color>
+
+    <color name="label_primary">#FFFFFF</color>
+    <color name="label_secondary">#98989F</color>
+    <color name="label_tertiary">#636366</color>
+
+    <!-- Accent (Interactive Only) -->
+    <color name="accent">#0A84FF</color>
+    <color name="accent_tint">#260A84FF</color>
+
+    <!-- Semantic Status (Health Only) -->
+    <color name="success">#30D158</color>
+    <color name="warning">#FF9F0A</color>
+    <color name="critical">#FF453A</color>
+    <color name="info">#0A84FF</color>
+
+    <!-- Metric Palette (Chart strokes/fills & gauges) -->
+    <color name="metric_cpu">#0A84FF</color>
+    <color name="metric_memory">#BF5AF2</color>
+    <color name="metric_storage">#64D2FF</color>
+    <color name="metric_network">#5E5CE6</color>
+    <color name="metric_disk_read">#64D2FF</color>
+    <color name="metric_disk_write">#5E5CE6</color>
+
+    <!-- Shell Translucent Glass Surfaces -->
+    <color name="surface_capsule">#B81C1C1E</color>
+    <color name="surface_capsule_border">#38383A</color>
+    <color name="surface_topbar">#B81C1C1E</color>
+    <color name="surface_topbar_border">#38383A</color>
+    <color name="capsule_tint">#8C1C1E1E</color>
+    <color name="capsule_fallback">#E01C1E1E</color>
+    <color name="topbar_tint">#8C1C1E1E</color>
+    <color name="topbar_fallback">#E01C1E1E</color>
+    <color name="surface_segment_track">#2C2C2E</color>
+    <color name="surface_segment_active">#047857</color>
+    <color name="label_segment_selected">#F0FDF4</color>
+    <color name="track_color">#14FFFFFF</color>
+    <color name="nav_surface">#1C1C1E</color>
+    <color name="nav_border">#38383A</color>
+
+    <!-- Status Island Tokens (Opaque surface, solid 1dp border) -->
+    <color name="island_surface">#1C1C1E</color>
+    <color name="surface_island_bg">@color/island_surface</color>
+    <color name="surface_island_expanded">@color/island_surface</color>
+    <color name="island_stroke">#38383A</color>
+    <color name="island_shadow">#40000000</color>
+    <color name="surface_island_button">#260A84FF</color>
+    <color name="surface_island_button_tint">@color/accent</color>
+
+    <!-- Primitives -->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- Compatibility Aliases -->
+    <color name="bg_dark">@color/bg</color>
+    <color name="bg_screen">@color/bg</color>
+    <color name="bg_glow">#00000000</color>
+    <color name="surface_card">@color/surface_1</color>
+    <color name="surface_card_nested">@color/surface_2</color>
+    <color name="border_color">@color/separator</color>
+    <color name="border_subtle">@color/separator</color>
+    <color name="border_capsule">@color/surface_capsule_border</color>
+    <color name="card_stroke">@color/separator</color>
+    <color name="divider_color">@color/separator</color>
+    <color name="text_primary">@color/label_primary</color>
+    <color name="text_secondary">@color/label_secondary</color>
+    <color name="text_muted">@color/label_tertiary</color>
+    <color name="text_on_accent">#FFFFFF</color>
+    <color name="accent_tech">#34D399</color>
+    <color name="accent_tech_dim">#2634D399</color>
+    <color name="accent_tech_tint">#2634D399</color>
+    <color name="accent_emerald">#34D399</color>
+    <color name="accent_blue">@color/accent</color>
+    <color name="accent_blue_hover">@color/accent</color>
+    <color name="accent_blue_dim">@color/accent_tint</color>
+    <color name="accent_blue_tint">@color/accent_tint</color>
+    <color name="accent_pill_bg">@color/accent_tint</color>
+    <color name="accent_pill_border">@color/accent</color>
+    <color name="status_success">@color/success</color>
+    <color name="status_success_tint">#2630D158</color>
+    <color name="status_warning">@color/warning</color>
+    <color name="status_warning_tint">#26FF9F0A</color>
+    <color name="status_critical">@color/critical</color>
+    <color name="status_critical_tint">#26FF453A</color>
+    <color name="status_healthy">@color/success</color>
+    <color name="status_healthy_bg">#2630D158</color>
+</resources>

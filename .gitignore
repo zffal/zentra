@@ -1,0 +1,107 @@
+﻿# Gradle & Android Build Outputs
+.gradle/
+.kotlin/
+build/
+*/build/
+app/build/
+*.apk
+*.aab
+*.ap_
+*.dex
+output.json
+
+# Local Configuration & Machine-Specific Paths
+local.properties
+.externalNativeBuild
+.cxx/
+captures/
+capture/
+
+# Keystores & Secrets
+*.jks
+*.keystore
+*.key
+*.p12
+*.pem
+
+# IDE & Editor Config
+*.iml
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Test Data, Telemetry Dumps & Logs
+*.log
+actual_*.json
+*test_data*.json
+omnis_backup_*.tar.gz
+scripts/actual_*.json
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+*.env
+.env.local
+
+# Node & Web Builds
+node_modules/
+frontend/dist/
+frontend/node_modules/
+.npm
+
+# Legacy monorepo folders kept out of the Android repo
+
+# Databases & packaged releases
+*.db
+*.sqlite3
+releases/
+*.tar.gz
+
+# Python generated files and virtual environments
+**/.venv/
+**/venv/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node generated files
+**/node_modules/
+**/dist/
+
+# Android and Gradle generated files
+.gradle/
+**/build/
+.idea/
+.kotlin/
+local.properties
+
+# Secrets and local environment configuration
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.jks
+*.keystore
+
+# Local databases and runtime data
+*.sqlite
+*.sqlite3
+*.db
+
+# Exclude alternate and legacy project copies from the root repository
+/backend/
+/frontend/
+/scripts/
+
+# Keep real runtime data and local secrets out of Git
+/zentra-backend/data/*
+!/zentra-backend/data/.gitkeep

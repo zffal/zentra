@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/bg_screen">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Ambient Emerald Glow -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:background="@drawable/bg_ambient_emerald_glow" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="24dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="36dp">
+
+                <!-- 40dp Circular Frosted Back Action -->
+                <ImageButton
+                    android:id="@+id/btnBackToConnect"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_glass_button_circular"
+                    android:src="@drawable/ic_arrow_back"
+                    app:tint="@color/text_primary"
+                    android:contentDescription="Back"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Header -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sign In"
+                    style="@style/LargeTitle" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Authenticate with your server"
+                    style="@style/Caption"
+                    android:layout_marginTop="4dp" />
+
+                <!-- Target Server Hostname Chip -->
+                <TextView
+                    android:id="@+id/tvTargetServer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/bg_nav_pill_selected"
+                    android:backgroundTint="@color/surface_2"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    style="@style/Mono"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="5dp"
+                    android:text="192.168.1.100:8765" />
+
+                <!-- Input Hero Card (28dp radius) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/CardViewHero"
+                    android:layout_marginTop="24dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="22dp">
+
+                        <!-- Username -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="USERNAME"
+                            style="@style/SectionHeader"
+                            android:layout_marginBottom="6dp" />
+
+                        <EditText
+                            android:id="@+id/etUsername"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            android:background="@drawable/bg_input_field"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:hint="admin"
+                            style="@style/Body"
+                            android:inputType="textNoSuggestions"
+                            android:singleLine="true" />
+
+                        <!-- Password -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PASSWORD"
+                            style="@style/SectionHeader"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="6dp" />
+
+                        <EditText
+                            android:id="@+id/etPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            android:background="@drawable/bg_input_field"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:hint="••••••••"
+                            style="@style/Body"
+                            android:inputType="textPassword"
+                            android:singleLine="true" />
+
+                        <!-- Error Text -->
+                        <TextView
+                            android:id="@+id/tvLoginError"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:textColor="@color/critical"
+                            android:textSize="12.5sp"
+                            android:visibility="gone"
+                            tools:visibility="visible"
+                            tools:text="Incorrect username or password" />
+
+                        <!-- Action Button -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="22dp">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnSignIn"
+                                style="@style/ActionButton"
+                                android:layout_width="match_parent"
+                                android:layout_height="52dp"
+                                android:text="Sign In" />
+
+                            <ProgressBar
+                                android:id="@+id/progressSignIn"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_gravity="center"
+                                android:indeterminateTint="@color/black"
+                                android:visibility="gone" />
+                        </FrameLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Switch to Register Link -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnGoToRegister"
+                    style="@style/GhostButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Don't have an account? Create account" />
+
+            </LinearLayout>
+        </FrameLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

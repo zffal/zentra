@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_sheet_rounded_top">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="36dp">
+
+        <!-- Grabber Handle -->
+        <View
+            android:layout_width="36dp"
+            android:layout_height="4.5dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bg_nav_pill_selected"
+            android:backgroundTint="@color/separator"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Cards"
+            style="@style/ScreenTitle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="16dp"
+            android:text="Add hidden metrics and tools to your Overview"
+            style="@style/Caption" />
+
+        <!-- Empty state -->
+        <TextView
+            android:id="@+id/tvNoHiddenCards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="All available cards are already on your Overview."
+            android:textColor="@color/label_secondary"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:paddingVertical="24dp"
+            android:visibility="gone" />
+
+        <!-- Container for dynamically added card items -->
+        <LinearLayout
+            android:id="@+id/layoutAddCardItems"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

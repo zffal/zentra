@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Zentra</string>
+    <string name="tagline">Your infrastructure. One place.</string>
+
+    <!-- Status Tokens -->
+    <string name="status_online">Online</string>
+    <string name="status_reconnecting">Reconnecting</string>
+    <string name="status_offline">Offline</string>
+    <string name="status_outdated">Outdated</string>
+    <string name="status_healthy">Healthy</string>
+    <string name="status_attention">Attention</string>
+
+    <!-- Card Titles (1-2 Words) -->
+    <string name="card_title_cpu">CPU</string>
+    <string name="card_title_memory">Memory</string>
+    <string name="card_title_storage">Storage</string>
+    <string name="card_title_thermals">Thermals</string>
+    <string name="card_title_network">Network</string>
+    <string name="card_title_services">Services</string>
+    <string name="card_title_alerts">Alerts</string>
+
+    <!-- Systems & Storage Section Headers -->
+    <string name="title_processor">Processor</string>
+    <string name="title_memory">Memory</string>
+    <string name="title_temps">Temps</string>
+    <string name="title_processes">Processes</string>
+    <string name="title_disks">Disks</string>
+    <string name="title_ports">Ports</string>
+    <string name="title_firewall">Firewall</string>
+
+    <!-- Subtitles & Formats -->
+    <string name="cpu_cores_format">%d cores</string>
+    <string name="thermal_normal">Normal</string>
+    <string name="services_running_format">%1$d / %2$d running</string>
+    <string name="services_summary_format">%1$d up · %2$d down</string>
+    <string name="search_hint">Search</string>
+    <string name="alerts_none">None</string>
+    <string name="alerts_active_format">%d active</string>
+
+    <!-- Accessibility Descriptions -->
+    <string name="cd_hero_healthy">All systems and background services running normally.</string>
+    <string name="cd_hero_attention">System activity requires review.</string>
+    <string name="cd_hero_offline">Server is offline and unreachable.</string>
+
+    <!-- Overview Customization -->
+    <string name="card_title_disk_io">Disk I/O</string>
+    <string name="card_title_ports">Listening Ports</string>
+    <string name="card_title_containers">Containers</string>
+    <string name="overview_edit_hint">Hold any card to customize Overview layout</string>
+    <string name="overview_edit_done">Done</string>
+    <string name="overview_edit_add">Add</string>
+    <string name="overview_edit_reset">Reset</string>
+    <string name="overview_choose_drive">Choose drive</string>
+    <string name="overview_reset_title">Reset Overview?</string>
+    <string name="overview_reset_message">Restore default card order, visible cards, and primary drive?</string>
+</resources>

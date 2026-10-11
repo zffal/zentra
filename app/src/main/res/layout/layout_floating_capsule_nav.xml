@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/capsuleNavContainer"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/floating_nav_height"
+    app:cardCornerRadius="28dp"
+    app:cardElevation="6dp"
+    app:cardBackgroundColor="@color/nav_surface"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/nav_border"
+    app:cardPreventCornerOverlap="false"
+    app:cardUseCompatPadding="false">
+
+    <!-- Layer 4: Sliding pill indicator (spring animated between tabs) -->
+    <View
+        android:id="@+id/navSlidingPill"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:visibility="invisible"
+        android:background="@drawable/bg_nav_pill_selected" />
+
+    <!-- Layer 5: Icons and labels on top, never blurred -->
+    <LinearLayout
+        android:id="@+id/navItemsRow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="6dp">
+
+        <!-- 1. Overview -->
+        <LinearLayout
+            android:id="@+id/navItemOverview"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingVertical="4dp"
+            android:contentDescription="Overview">
+
+            <ImageView
+                android:id="@+id/navIconOverview"
+                android:layout_width="@dimen/floating_nav_icon_size"
+                android:layout_height="@dimen/floating_nav_icon_size"
+                android:src="@drawable/ic_nav_overview_filled"
+                app:tint="@color/accent" />
+
+            <TextView
+                android:id="@+id/tvNavLabelOverview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Overview"
+                android:textSize="@dimen/floating_nav_label_size"
+                android:textStyle="bold"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/accent"
+                android:layout_marginTop="2dp"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <!-- 2. Systems -->
+        <LinearLayout
+            android:id="@+id/navItemSystems"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingVertical="4dp"
+            android:contentDescription="Systems">
+
+            <ImageView
+                android:id="@+id/navIconSystems"
+                android:layout_width="@dimen/floating_nav_icon_size"
+                android:layout_height="@dimen/floating_nav_icon_size"
+                android:src="@drawable/ic_nav_systems"
+                app:tint="@color/label_secondary" />
+
+            <TextView
+                android:id="@+id/tvNavLabelSystems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Systems"
+                android:textSize="@dimen/floating_nav_label_size"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/label_secondary"
+                android:layout_marginTop="2dp"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <!-- 3. Services (Containers) -->
+        <LinearLayout
+            android:id="@+id/navItemContainers"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingVertical="4dp"
+            android:contentDescription="Services">
+
+            <ImageView
+                android:id="@+id/navIconContainers"
+                android:layout_width="@dimen/floating_nav_icon_size"
+                android:layout_height="@dimen/floating_nav_icon_size"
+                android:src="@drawable/ic_nav_containers"
+                app:tint="@color/label_secondary" />
+
+            <TextView
+                android:id="@+id/tvNavLabelContainers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Services"
+                android:textSize="@dimen/floating_nav_label_size"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/label_secondary"
+                android:layout_marginTop="2dp"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <!-- 4. Storage -->
+        <LinearLayout
+            android:id="@+id/navItemStorage"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingVertical="4dp"
+            android:contentDescription="Storage">
+
+            <ImageView
+                android:id="@+id/navIconStorage"
+                android:layout_width="@dimen/floating_nav_icon_size"
+                android:layout_height="@dimen/floating_nav_icon_size"
+                android:src="@drawable/ic_nav_storage"
+                app:tint="@color/label_secondary" />
+
+            <TextView
+                android:id="@+id/tvNavLabelStorage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Storage"
+                android:textSize="@dimen/floating_nav_label_size"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/label_secondary"
+                android:layout_marginTop="2dp"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <!-- 5. Alerts -->
+        <LinearLayout
+            android:id="@+id/navItemAlerts"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingVertical="4dp"
+            android:contentDescription="Alerts">
+
+            <ImageView
+                android:id="@+id/navIconAlerts"
+                android:layout_width="@dimen/floating_nav_icon_size"
+                android:layout_height="@dimen/floating_nav_icon_size"
+                android:src="@drawable/ic_nav_alerts"
+                app:tint="@color/label_secondary" />
+
+            <TextView
+                android:id="@+id/tvNavLabelAlerts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alerts"
+                android:textSize="@dimen/floating_nav_label_size"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/label_secondary"
+                android:layout_marginTop="2dp"
+                android:singleLine="true" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

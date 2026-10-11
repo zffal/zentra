@@ -1,0 +1,1125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_sheet_rounded_top">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="36dp">
+
+        <!-- Apple-grade Grabber Handle Indicator -->
+        <View
+            android:layout_width="36dp"
+            android:layout_height="4.5dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/badge_stopped"
+            android:backgroundTint="@color/separator"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textColor="@color/label_primary"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:letterSpacing="-0.01"
+            android:fontFamily="@font/inter"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 1. Connected Server Inset Group -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Active server"
+            style="@style/SectionHeader"
+            android:layout_marginBottom="6dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            style="@style/CardViewStyle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvSettingsHostName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/label_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/inter"
+                        android:text="Server" />
+
+                    <TextView
+                        android:id="@+id/tvSettingsStatusBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/badge_running"
+                        android:textColor="@color/success"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="3dp"
+                        android:text="Connected" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvSettingsServerUrl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/label_secondary"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/jetbrains_mono"
+                    android:layout_marginTop="4dp"
+                    android:text="192.168.1.100:8765" />
+
+                <TextView
+                    android:id="@+id/tvSettingsConnectionType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/label_tertiary"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/inter"
+                    android:layout_marginTop="2dp"
+                    android:text="Local network connection" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.75dp"
+                    android:background="@color/separator"
+                    android:layout_marginVertical="10dp" />
+
+                <TextView
+                    android:id="@+id/tvSettingsUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/label_secondary"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/inter"
+                    android:text="Logged in as: admin" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 2. Appearance Theme Selector -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Appearance"
+            style="@style/SectionHeader"
+            android:layout_marginBottom="6dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            style="@style/CardViewStyle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <com.example.serverdashboard.ui.views.SegmentedControl
+                    android:id="@+id/toggleThemeGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                    <TextView
+                        android:id="@+id/btnThemeLight"
+                        style="@style/SegmentedLabel"
+                        android:text="Light" />
+
+                    <TextView
+                        android:id="@+id/btnThemeDark"
+                        style="@style/SegmentedLabel"
+                        android:text="Dark" />
+
+                    <TextView
+                        android:id="@+id/btnThemeSystem"
+                        style="@style/SegmentedLabel"
+                        android:text="System" />
+                </com.example.serverdashboard.ui.views.SegmentedControl>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 3. Notifications Group -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notifications"
+            style="@style/SectionHeader"
+            android:layout_marginBottom="6dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            style="@style/CardViewStyle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Permission / Background Status line -->
+                <LinearLayout
+                    android:id="@+id/layoutNotifPermissionStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
+
+                    <TextView
+                        android:id="@+id/tvNotifPermissionStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Notifications: Checking..."
+                        android:textColor="@color/label_secondary"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/inter" />
+
+                    <ImageView
+                        android:id="@+id/ivNotifStatusChevron"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/label_tertiary"
+                        android:visibility="gone"
+                        android:contentDescription="Configure permissions" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.75dp"
+                    android:background="@color/separator"
+                    android:layout_marginBottom="10dp" />
+
+                <!-- Master Toggle -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="4dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Server alert notifications"
+                            android:textColor="@color/label_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/inter" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Receive alerts when problems occur"
+                            android:textColor="@color/label_secondary"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/inter"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchNotifMaster"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:thumbTint="@color/accent"
+                        app:trackTint="@color/surface_3" />
+                </LinearLayout>
+
+                <!-- Detailed Settings (hidden if master is OFF) -->
+                <LinearLayout
+                    android:id="@+id/layoutNotifDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.75dp"
+                        android:background="@color/separator"
+                        android:layout_marginVertical="10dp" />
+
+                    <!-- Section Header: Categories -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CATEGORIES"
+                        android:textColor="@color/label_tertiary"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.04"
+                        android:fontFamily="@font/inter"
+                        android:layout_marginBottom="6dp" />
+
+                    <!-- Temperature -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="6dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="High temperature"
+                                android:textColor="@color/label_primary"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/inter" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Warning at 75°C • Critical at 85°C"
+                                android:textColor="@color/label_secondary"
+                                android:textSize="11sp"
+                                android:fontFamily="@font/inter" />
+                        </LinearLayout>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchNotifTemp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:thumbTint="@color/accent"
+                            app:trackTint="@color/surface_3" />
+                    </LinearLayout>
+
+                    <!-- CPU & Load -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="6dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="High CPU &amp; memory load"
+                                android:textColor="@color/label_primary"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/inter" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Warn 85% (2m) • Crit 95% (5m)"
+                                android:textColor="@color/label_secondary"
+                                android:textSize="11sp"
+                                android:fontFamily="@font/inter" />
+                        </LinearLayout>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchNotifLoad"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:thumbTint="@color/accent"
+                            app:trackTint="@color/surface_3" />
+                    </LinearLayout>
+
+                    <!-- Disk & SMART -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="6dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Storage &amp; disk health"
+                                android:textColor="@color/label_primary"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/inter" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Space >85% &amp; SMART disk failure"
+                                android:textColor="@color/label_secondary"
+                                android:textSize="11sp"
+                                android:fontFamily="@font/inter" />
+                        </LinearLayout>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchNotifDisk"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:thumbTint="@color/accent"
+                            app:trackTint="@color/surface_3" />
+                    </LinearLayout>
+
+                    <!-- Server Connection -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="6dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Server unreachable"
+                                android:textColor="@color/label_primary"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/inter" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Alert after 10m offline"
+                                android:textColor="@color/label_secondary"
+                                android:textSize="11sp"
+                                android:fontFamily="@font/inter" />
+                        </LinearLayout>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchNotifConn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:thumbTint="@color/accent"
+                            app:trackTint="@color/surface_3" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.75dp"
+                        android:background="@color/separator"
+                        android:layout_marginVertical="10dp" />
+
+                    <!-- Section Header: Preferences -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DELIVERY &amp; MONITORING"
+                        android:textColor="@color/label_tertiary"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.04"
+                        android:fontFamily="@font/inter"
+                        android:layout_marginBottom="6dp" />
+
+                    <!-- Live Monitoring -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="6dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Live monitoring"
+                                android:textColor="@color/label_primary"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/inter" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Persistent WebSocket connection for real-time alerts. Uses more battery."
+                                android:textColor="@color/label_secondary"
+                                android:textSize="11sp"
+                                android:fontFamily="@font/inter" />
+                        </LinearLayout>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchLiveMonitoring"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:thumbTint="@color/accent"
+                            app:trackTint="@color/surface_3" />
+                    </LinearLayout>
+
+                    <!-- Quiet Hours -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="6dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Quiet hours (22:00 – 07:00)"
+                                android:textColor="@color/label_primary"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/inter" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Only critical alerts will notify"
+                                android:textColor="@color/label_secondary"
+                                android:textSize="11sp"
+                                android:fontFamily="@font/inter" />
+                        </LinearLayout>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchQuietHours"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:thumbTint="@color/accent"
+                            app:trackTint="@color/surface_3" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.75dp"
+                        android:background="@color/separator"
+                        android:layout_marginVertical="10dp" />
+
+                    <!-- Battery Optimization Row -->
+                    <LinearLayout
+                        android:id="@+id/btnAllowBackgroundActivity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingVertical="8dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Allow background activity"
+                                android:textColor="@color/label_primary"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/inter" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Configure battery optimization for uninterrupted background checks"
+                                android:textColor="@color/label_secondary"
+                                android:textSize="11sp"
+                                android:fontFamily="@font/inter" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/label_tertiary"
+                            android:contentDescription="Open battery settings" />
+                    </LinearLayout>
+
+                    <!-- Test Notification Button -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSendTestNotification"
+                        style="@style/SecondaryButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="Send test notification"
+                        android:layout_marginTop="12dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 4. Network & Data Usage Settings -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Network &amp; Data Usage"
+            style="@style/SectionHeader"
+            android:layout_marginBottom="6dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            style="@style/CardViewStyle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Speed in Bits Toggle -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="4dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Display speed in bits (Mbps)"
+                            android:textColor="@color/label_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/inter" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Show network rates as Mbps / Kbps instead of MB/s / KB/s"
+                            android:textColor="@color/label_secondary"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/inter"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchSpeedBits"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:thumbTint="@color/accent"
+                        app:trackTint="@color/surface_3" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.75dp"
+                    android:background="@color/separator"
+                    android:layout_marginVertical="10dp" />
+
+                <!-- Monthly Data Cap Toggle -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="4dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Monthly data limit"
+                            android:textColor="@color/label_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/inter" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Warn when server data usage reaches 80% of limit"
+                            android:textColor="@color/label_secondary"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/inter"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchDataCap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:thumbTint="@color/accent"
+                        app:trackTint="@color/surface_3" />
+                </LinearLayout>
+
+                <!-- Data Cap Details (Expandable) -->
+                <LinearLayout
+                    android:id="@+id/layoutDataCapDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:paddingTop="8dp">
+
+                    <!-- Allowance input -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Data allowance (GB)"
+                            android:textColor="@color/label_primary"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/inter" />
+
+                        <EditText
+                            android:id="@+id/etDataCapGb"
+                            android:layout_width="90dp"
+                            android:layout_height="38dp"
+                            android:background="@drawable/bg_input_field"
+                            android:textColor="@color/label_primary"
+                            android:textSize="14sp"
+                            android:gravity="center"
+                            android:inputType="numberDecimal"
+                            android:fontFamily="@font/jetbrains_mono"
+                            android:hint="100"
+                            android:textColorHint="@color/label_tertiary" />
+                    </LinearLayout>
+
+                    <!-- Reset day input -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Billing cycle reset day (1-31)"
+                            android:textColor="@color/label_primary"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/inter" />
+
+                        <EditText
+                            android:id="@+id/etBillingCycleDay"
+                            android:layout_width="90dp"
+                            android:layout_height="38dp"
+                            android:background="@drawable/bg_input_field"
+                            android:textColor="@color/label_primary"
+                            android:textSize="14sp"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:fontFamily="@font/jetbrains_mono"
+                            android:hint="1"
+                            android:textColorHint="@color/label_tertiary" />
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSaveDataCap"
+                        style="@style/Widget.MaterialComponents.Button"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:text="Save limit settings"
+                        android:textSize="13sp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:layout_marginTop="4dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 5. Wake-on-LAN Remote Boot Group -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wake-on-LAN"
+            style="@style/SectionHeader"
+            android:layout_marginBottom="6dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            style="@style/CardViewStyle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:id="@+id/layoutWolHeaderRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Configure MAC Address"
+                            android:textColor="@color/label_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/inter" />
+
+                        <TextView
+                            android:id="@+id/tvWolConfigSummary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Not configured"
+                            android:textColor="@color/label_secondary"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/jetbrains_mono"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnToggleWolConfig"
+                        style="@style/GhostButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="Configure"
+                        android:textColor="@color/accent"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- Expandable WoL Parameters -->
+                <LinearLayout
+                    android:id="@+id/layoutWolConfig"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MAC Address"
+                        android:textColor="@color/label_tertiary"
+                        android:textSize="11sp" />
+
+                    <EditText
+                        android:id="@+id/etWolMac"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:background="@drawable/bg_input_field"
+                        android:hint="AA:BB:CC:DD:EE:FF"
+                        android:textColor="@color/label_primary"
+                        android:textColorHint="@color/label_tertiary"
+                        android:fontFamily="@font/jetbrains_mono"
+                        android:textSize="13sp"
+                        android:paddingHorizontal="12dp"
+                        android:layout_marginTop="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Broadcast IP"
+                                android:textColor="@color/label_tertiary"
+                                android:textSize="11sp" />
+
+                            <EditText
+                                android:id="@+id/etWolBroadcast"
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:background="@drawable/bg_input_field"
+                                android:text="192.168.1.255"
+                                android:textColor="@color/label_primary"
+                                android:textColorHint="@color/label_tertiary"
+                                android:fontFamily="@font/jetbrains_mono"
+                                android:textSize="13sp"
+                                android:paddingHorizontal="12dp"
+                                android:layout_marginTop="4dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Port"
+                                android:textColor="@color/label_tertiary"
+                                android:textSize="11sp" />
+
+                            <EditText
+                                android:id="@+id/etWolPort"
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:background="@drawable/bg_input_field"
+                                android:text="9"
+                                android:inputType="number"
+                                android:textColor="@color/label_primary"
+                                android:textColorHint="@color/label_tertiary"
+                                android:fontFamily="@font/jetbrains_mono"
+                                android:textSize="13sp"
+                                android:paddingHorizontal="12dp"
+                                android:layout_marginTop="4dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSaveWolConfig"
+                        style="@style/ActionButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="Save Settings"
+                        android:layout_marginTop="12dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 4. Advanced Controls (Network restart & Host Power) -->
+        <LinearLayout
+            android:id="@+id/layoutAdvancedToggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingVertical="10dp"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:id="@+id/tvAdvancedToggleText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Advanced Host &amp; Network Controls ▼"
+                android:textColor="@color/label_secondary"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.02" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutAdvancedContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                style="@style/CardViewStyle">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Network management"
+                        style="@style/SectionHeader" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSettingsRestartNetwork"
+                        style="@style/SecondaryButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="46dp"
+                        android:text="Restart network service"
+                        android:textColor="@color/warning"
+                        android:layout_marginTop="10dp" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutSettingsNetworkProgress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:visibility="gone"
+                        android:layout_marginTop="8dp">
+
+                        <ProgressBar
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:id="@+id/tvSettingsNetworkStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Restarting network service..."
+                            android:textColor="@color/label_secondary"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Host Power Operations -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/CardViewStyle">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Host power actions"
+                        style="@style/SectionHeader"
+                        android:textColor="@color/critical" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnServerReboot"
+                            style="@style/SecondaryButton"
+                            android:layout_width="0dp"
+                            android:layout_height="46dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            android:text="Reboot"
+                            android:textColor="@color/critical" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnServerShutdown"
+                            style="@style/SecondaryButton"
+                            android:layout_width="0dp"
+                            android:layout_height="46dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:text="Shutdown"
+                            android:textColor="@color/critical" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <!-- 5. Session Operations (Switch Server & Sign Out) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSwitchServer"
+            style="@style/SecondaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Switch Server"
+            android:layout_marginBottom="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSignOut"
+            style="@style/GhostButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Sign Out"
+            android:textColor="@color/critical" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
