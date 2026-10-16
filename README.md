@@ -8,15 +8,16 @@ Zentra is a modern, native Android client for self-hosted Linux and Ubuntu serve
 
 ## Highlights
 
-- **3-Second Health Verdict:** Instantly answers *"Is my server healthy?"* with simple human-readable status banners (`SERVER HEALTHY`, `NEEDS ATTENTION`, `OFFLINE`).
-- **Real-Time Telemetry via WebSockets:** Live streaming updates for CPU load, RAM usage, storage consumption, temperatures, and network bandwidth without manual refreshing.
-- **Simplified Services (Docker):** Manage containers with human-friendly service states (`Running`, `Stopped`), safe action confirmation dialogs, and a real-time terminal log viewer.
-- **Smart Alert & Notification Engine:** Intelligent threshold monitoring with hysteresis (CPU temp warning $\ge 90^\circ\text{C}$ with recovery $\le 85^\circ\text{C}$, CPU usage warning $\ge 90\%$ with recovery $\le 80\%$), deduplication, foreground awareness, and instant deep-linking.
-- **Wake-on-LAN (WOL) Integration:** Wake up sleeping or powered-off home lab servers with one tap using standard magic packets.
-- **Floating Capsule Navigation:** Minimalist icon-only floating navigation bar with horizontal swipe gesture synchronization.
-- **Strict Privacy & Security:** Client-authoritative JWT token storage via Android `EncryptedSharedPreferences` (AES-256-GCM). Zero telemetry leaks, zero third-party trackers, zero ads.
-- **Flexible Networking:** Seamlessly connect over local home Wi-Fi (LAN) or encrypted mesh VPNs (Tailscale, WireGuard).
-
+Real-Time Server Monitoring: Monitor CPU, memory, disk activity, network traffic, temperatures, and system uptime from your phone.
+Live Server Dashboard: View system metrics and server health in a single, clean interface.
+Docker Container Management: Check container status and manage services from the app.
+Storage Monitoring: View disk usage and storage information for your server.
+Alerts & Notifications: View server alerts and monitor important system conditions.
+System Update Management: Check available Ubuntu updates and initiate system updates from the app.
+Remote Server Access: Connect to your home server over your local network or Tailscale.
+Server Diagnostics: Check system information, network status, and other server conditions.
+Minimal Dark UI: A clean, modern dashboard designed for quick access to server information.
+Secure Authentication: Sign in to access your connected server through Zentra's authenticated API.
 ---
 
 ## UI / UX Design
