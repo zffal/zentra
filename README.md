@@ -8,25 +8,25 @@ Zentra is a modern, native Android client for self-hosted Linux and Ubuntu serve
 
 ## Highlights
 
-Real-Time Server Monitoring: Monitor CPU, memory, disk activity, network traffic, temperatures, and system uptime from your phone.
+*Real-Time Server Monitoring: Monitor CPU, memory, disk activity, network traffic, temperatures, and system uptime from your phone.
 
-Live Server Dashboard: View system metrics and server health in a single, clean interface.
+*Live Server Dashboard: View system metrics and server health in a single, clean interface.
 
-Docker Container Management: Check container status and manage services from the app.
+*Docker Container Management: Check container status and manage services from the app.
 
-Storage Monitoring: View disk usage and storage information for your server.
+*Storage Monitoring: View disk usage and storage information for your server.
 
-Alerts & Notifications: View server alerts and monitor important system conditions.
+*Alerts & Notifications: View server alerts and monitor important system conditions.
 
-System Update Management: Check available Ubuntu updates and initiate system updates from the app.
+*System Update Management: Check available Ubuntu updates and initiate system updates from the app.
 
-Remote Server Access: Connect to your home server over your local network or Tailscale.
+*Remote Server Access: Connect to your home server over your local network or Tailscale.
 
-Server Diagnostics: Check system information, network status, and other server conditions.
+*Server Diagnostics: Check system information, network status, and other server conditions.
 
-Minimal Dark UI: A clean, modern dashboard designed for quick access to server information.
+*Minimal Dark UI: A clean, modern dashboard designed for quick access to server information.
 
-Secure Authentication: Sign in to access your connected server through Zentra's authenticated API.
+*Secure Authentication: Sign in to access your connected server through Zentra's authenticated API.
 
 ---
 
